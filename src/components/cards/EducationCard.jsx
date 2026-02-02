@@ -9,12 +9,25 @@ const Top = styled.div`
   gap: 12px;
 `;
 const Image = styled.img`
+  width: 50px;
   height: 50px;
-  border-radius: 10px;
+  min-width: 50px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 8px;
   margin-top: 4px;
+  background-color: ${({ theme }) => theme.white};
+  padding: 6px;
+  border: 1px solid ${({ theme }) => theme.primary}30;
+  box-shadow: ${({ theme }) => theme.bg === "#000000" 
+    ? "0 2px 8px rgba(0, 0, 0, 0.3)" 
+    : "0 2px 8px rgba(0, 0, 0, 0.1)"};
 
   @media only screen and (max-width: 768px) {
+    width: 40px;
     height: 40px;
+    min-width: 40px;
+    padding: 4px;
   }
 `;
 const Body = styled.div`
@@ -80,7 +93,12 @@ const EducationCard = ({ education }) => {
           width="100%"
           height="100%"
           alt={education.school}
-          style={{ borderRadius: "50%", objectFit: "cover" }}
+          style={{ 
+            borderRadius: "50%", 
+            objectFit: "cover",
+            border: "2px solid #1d4290",
+            boxShadow: "0 0 0 3px rgba(18, 174, 158, 0.2)"
+          }}
           src={education.img}
         />
       }

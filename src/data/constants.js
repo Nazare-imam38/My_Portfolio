@@ -2,6 +2,8 @@ export const Bio = {
   name: "Nazar E Imam",
   roles: [
     "Full Stack GIS Developer",
+    "Cartographer",
+    "Remote Sensing Analyst",
     "GIS Analyst"
   ],
   description:

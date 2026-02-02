@@ -104,17 +104,17 @@ const ContactButton = styled.input`
   background: linear-gradient(
     225deg,
     ${({ theme }) => theme.primary} 0%,
-    #FF6B35 100%
+    ${({ theme }) => theme.secondary} 100%
   );
   background: -moz-linear-gradient(
     225deg,
     ${({ theme }) => theme.primary} 0%,
-    #FF6B35 100%
+    ${({ theme }) => theme.secondary} 100%
   );
   background: -webkit-linear-gradient(
     225deg,
     ${({ theme }) => theme.primary} 0%,
-    #FF6B35 100%
+    ${({ theme }) => theme.secondary} 100%
   );
   padding: 13px 16px;
   margin-top: 2px;
@@ -164,7 +164,7 @@ const Contact = () => {
           Feel free to reach out to me for any questions or opportunities!
         </Desc>
         <ContactForm onSubmit={handleSubmit}>
-          <ContactTitle>Email Me 🚀</ContactTitle>
+          <ContactTitle>Email Me</ContactTitle>
           <ContactInput placeholder="Your Email" name="from_email" />
           <ContactInput placeholder="Your Name" name="from_name" />
           <ContactInput placeholder="Subject" name="subject" />

@@ -27,13 +27,13 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #FF8C42;
+  background: #1d4290;
   border-radius: 6px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #FF6B35;
+  background: #12ae9e;
 }
 
 ::-webkit-backdrop-filter {
@@ -42,14 +42,14 @@ body {
 
 /* Vertical Timeline Customization */
 .vertical-timeline-element-icon {
-  background: #FF8C42 !important;
-  box-shadow: 0 0 0 4px rgba(255, 140, 66, 0.3), 0 0 0 8px rgba(255, 140, 66, 0.15) !important;
+  background: #1d4290 !important;
+  box-shadow: 0 0 0 4px rgba(29, 66, 144, 0.3), 0 0 0 8px rgba(18, 174, 158, 0.15) !important;
 }
 
 .vertical-timeline::before {
-  background: rgba(255, 140, 66, 0.4) !important;
+  background: rgba(29, 66, 144, 0.4) !important;
 }
 
 .vertical-timeline-element-content-arrow {
-  border-right: 7px solid rgba(255, 140, 66, 0.4) !important;
+  border-right: 7px solid rgba(29, 66, 144, 0.4) !important;
 }

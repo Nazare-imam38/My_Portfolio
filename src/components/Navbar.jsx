@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link as LinkR } from "react-router-dom";
 import styled, { useTheme } from "styled-components";
 import { Bio } from "../data/constants";
-import { MenuRounded, Brightness4, Brightness7 } from "@mui/icons-material";
+import { 
+  MenuRounded, 
+  Brightness4, 
+  Brightness7,
+  Person,
+  Code,
+  Work,
+  Folder,
+  School
+} from "@mui/icons-material";
 
 const Nav = styled.div`
   background-color: ${({ theme }) => theme.bg};
@@ -57,13 +66,32 @@ const NavItems = styled.ul`
 `;
 
 const NavLink = styled.a`
-  color: ${({ theme }) => theme.text_primary};
-  font-weight: 500;
+  color: ${({ theme, active }) => active ? theme.secondary : theme.primary};
+  font-weight: ${({ active }) => active ? '600' : '500'};
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: ${({ active }) => active ? '100%' : '0'};
+    height: 3px;
+    background-color: ${({ theme }) => theme.secondary};
+    transition: width 0.3s ease-in-out;
+    border-radius: 2px;
+  }
   &:hover {
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.secondary};
+    transform: translateY(-2px);
+    &::after {
+      width: 100%;
+    }
   }
 `;
 
@@ -84,18 +112,24 @@ const ThemeToggle = styled.button`
   border: 1px solid ${({ theme }) => theme.primary};
   background: transparent;
   color: ${({ theme }) => theme.primary};
-  border-radius: 20px;
+  border-radius: 50%;
   cursor: pointer;
-  padding: 8px 16px;
-  font-size: 16px;
-  font-weight: 500;
-  transition: all 0.6s ease-in-out;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  transition: all 0.6s ease-in-out;
+  & svg {
+    transition: all 0.6s ease-in-out;
+  }
   &:hover {
     background: ${({ theme }) => theme.primary};
-    color: ${({ theme }) => theme.text_primary};
+    color: #FFFFFF;
+    & svg {
+      color: #FFFFFF;
+    }
   }
 `;
 
@@ -114,7 +148,7 @@ const GithubButton = styled.a`
   text-decoration: none;
   &:hover {
     background: ${({ theme }) => theme.primary};
-    color: ${({ theme }) => theme.text_primary};
+    color: #FFFFFF;
   }
 `;
 
@@ -155,7 +189,65 @@ const MobileMenu = styled.ul`
 
 const Navbar = ({ darkMode, toggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("About");
   const theme = useTheme();
+
+  useEffect(() => {
+    const sections = ["About", "Skills", "Experience", "Projects", "Education"];
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -70% 0px",
+      threshold: 0,
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observers = sections.map((sectionId) => {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        observer.observe(section);
+        return observer;
+      }
+      return null;
+    });
+
+    // Fallback: Use scroll event to detect active section
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 100;
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section) {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            setActiveSection(sections[i]);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check on mount
+
+    return () => {
+      observers.forEach((observer) => {
+        if (observer) observer.disconnect();
+      });
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <Nav>
       <NavbarContainer>
@@ -170,28 +262,48 @@ const Navbar = ({ darkMode, toggleTheme }) => {
         </MobileIcon>
 
         <NavItems>
-          <NavLink href="#About">About</NavLink>
-          <NavLink href="#Skills">Skills</NavLink>
-          <NavLink href="#Experience">Experience</NavLink>
-          <NavLink href="#Projects">Projects</NavLink>
-          <NavLink href="#Education">Education</NavLink>
+          <NavLink href="#About" active={activeSection === "About"}>
+            <Person style={{ fontSize: '20px' }} />
+            About
+          </NavLink>
+          <NavLink href="#Skills" active={activeSection === "Skills"}>
+            <Code style={{ fontSize: '20px' }} />
+            Skills
+          </NavLink>
+          <NavLink href="#Experience" active={activeSection === "Experience"}>
+            <Work style={{ fontSize: '20px' }} />
+            Experience
+          </NavLink>
+          <NavLink href="#Projects" active={activeSection === "Projects"}>
+            <Folder style={{ fontSize: '20px' }} />
+            Projects
+          </NavLink>
+          <NavLink href="#Education" active={activeSection === "Education"}>
+            <School style={{ fontSize: '20px' }} />
+            Education
+          </NavLink>
         </NavItems>
 
         {isOpen && (
           <MobileMenu isOpen={isOpen}>
-            <NavLink onClick={() => setIsOpen(!isOpen)} href="#About">
+            <NavLink onClick={() => setIsOpen(!isOpen)} href="#About" active={activeSection === "About"}>
+              <Person style={{ fontSize: '20px' }} />
               About
             </NavLink>
-            <NavLink onClick={() => setIsOpen(!isOpen)} href="#Skills">
+            <NavLink onClick={() => setIsOpen(!isOpen)} href="#Skills" active={activeSection === "Skills"}>
+              <Code style={{ fontSize: '20px' }} />
               Skills
             </NavLink>
-            <NavLink onClick={() => setIsOpen(!isOpen)} href="#Experience">
+            <NavLink onClick={() => setIsOpen(!isOpen)} href="#Experience" active={activeSection === "Experience"}>
+              <Work style={{ fontSize: '20px' }} />
               Experience
             </NavLink>
-            <NavLink onClick={() => setIsOpen(!isOpen)} href="#Projects">
+            <NavLink onClick={() => setIsOpen(!isOpen)} href="#Projects" active={activeSection === "Projects"}>
+              <Folder style={{ fontSize: '20px' }} />
               Projects
             </NavLink>
-            <NavLink onClick={() => setIsOpen(!isOpen)} href="#Education">
+            <NavLink onClick={() => setIsOpen(!isOpen)} href="#Education" active={activeSection === "Education"}>
+              <School style={{ fontSize: '20px' }} />
               Education
             </NavLink>
             <ThemeToggle 
@@ -200,12 +312,10 @@ const Navbar = ({ darkMode, toggleTheme }) => {
                 setIsOpen(false);
               }}
               style={{
-                width: "100%",
-                justifyContent: "center",
+                alignSelf: "center",
               }}
             >
               {darkMode ? <Brightness7 /> : <Brightness4 />}
-              {darkMode ? "Light Mode" : "Dark Mode"}
             </ThemeToggle>
             <GithubButton
               href={Bio.github}
@@ -223,7 +333,6 @@ const Navbar = ({ darkMode, toggleTheme }) => {
         <ButtonContainer>
           <ThemeToggle onClick={toggleTheme}>
             {darkMode ? <Brightness7 /> : <Brightness4 />}
-            {darkMode ? "Light" : "Dark"}
           </ThemeToggle>
           <GithubButton href={Bio.github} target="_Blank">
             Github Profile

@@ -137,17 +137,17 @@ const ResumeButton = styled.a`
   background: linear-gradient(
     225deg,
     ${({ theme }) => theme.primary} 0%,
-    #FF6B35 100%
+    ${({ theme }) => theme.secondary} 100%
   );
   background: -moz-linear-gradient(
     225deg,
     ${({ theme }) => theme.primary} 0%,
-    #FF6B35 100%
+    ${({ theme }) => theme.secondary} 100%
   );
   background: -webkit-linear-gradient(
     225deg,
     ${({ theme }) => theme.primary} 0%,
-    #FF6B35 100%
+    ${({ theme }) => theme.secondary} 100%
   );
   box-shadow: ${({ theme }) => theme.bg === "#000000" 
     ? "20px 20px 60px rgba(0, 0, 0, 0.8), -20px -20px 60px rgba(0, 0, 0, 0.8)" 
@@ -161,8 +161,8 @@ const ResumeButton = styled.a`
         transform: scale(1.05);
     transition: all 0.4s ease-in-out;
     box-shadow: ${({ theme }) => theme.bg === "#000000"
-      ? "20px 20px 60px rgba(255, 140, 66, 0.4), -20px -20px 60px rgba(255, 140, 66, 0.4)"
-      : "20px 20px 60px rgba(255, 140, 66, 0.3), -20px -20px 60px rgba(255, 140, 66, 0.3)"};
+      ? "20px 20px 60px rgba(29, 66, 144, 0.4), -20px -20px 60px rgba(18, 174, 158, 0.4)"
+      : "20px 20px 60px rgba(29, 66, 144, 0.3), -20px -20px 60px rgba(18, 174, 158, 0.3)"};
     filter: brightness(1.1);
     }    
     

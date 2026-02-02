@@ -1,6 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 
+const Image = styled.img`
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  object-position: center;
+  background-color: ${({ theme }) => theme.white};
+  border-radius: 10px;
+  box-shadow: ${({ theme }) => theme.bg === "#000000" ? "0 0 16px 2px rgba(0, 0, 0, 0.5)" : "0 0 16px 2px rgba(0, 0, 0, 0.1)"};
+  border: 1px solid ${({ theme }) => theme.primary}20;
+  transition: all 0.3s ease-in-out;
+`;
+
 const Card = styled.div`
   width: 330px;
   height: 490px;
@@ -20,15 +32,13 @@ const Card = styled.div`
     box-shadow: 0 0 30px ${({ theme }) => theme.primary}50;
     filter: brightness(1.1);
     border: 1px solid ${({ theme }) => theme.primary};
+    ${Image} {
+      transform: scale(1.02);
+      box-shadow: ${({ theme }) => theme.bg === "#000000" ? "0 0 20px 4px rgba(29, 66, 144, 0.3)" : "0 0 20px 4px rgba(29, 66, 144, 0.2)"};
+    }
   }
 `;
-const Image = styled.img`
-  width: 100%;
-  height: 180px;
-  background-color: ${({ theme }) => theme.white};
-  border-radius: 10px;
-  box-shadow: ${({ theme }) => theme.bg === "#000000" ? "0 0 16px 2px rgba(0, 0, 0, 0.5)" : "0 0 16px 2px rgba(0, 0, 0, 0.1)"};
-`;
+
 const Tags = styled.div`
   width: 100%;
   display: flex;
@@ -94,9 +104,17 @@ const Avatar = styled.img`
   height: 38px;
   border-radius: 50%;
   margin-left: -10px;
+  object-fit: cover;
+  object-position: center;
   background-color: ${({ theme }) => theme.white};
   box-shadow: ${({ theme }) => theme.bg === "#000000" ? "0 0 10px rgba(0, 0, 0, 0.5)" : "0 0 10px rgba(0, 0, 0, 0.2)"};
   border: 3px solid ${({ theme }) => theme.card};
+  transition: transform 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+    z-index: 10;
+    position: relative;
+  }
 `;
 
 const ProjectCard = ({ project, setOpenModal }) => {

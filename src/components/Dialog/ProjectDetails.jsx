@@ -1,7 +1,7 @@
 import { CloseRounded, GitHub, LinkedIn } from "@mui/icons-material";
 import { Modal } from "@mui/material";
 import React from "react";
-import styled, { useTheme } from "styled-components";
+import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
@@ -126,9 +126,17 @@ const MemberImage = styled.img`
   width: 50px;
   height: 50px;
   object-fit: cover;
+  object-position: center;
   border-radius: 50%;
   margin-bottom: 4px;
+  border: 2px solid ${({ theme }) => theme.primary}40;
   box-shadow: ${({ theme }) => theme.bg === "#000000" ? "0px 0px 10px 0px rgba(0, 0, 0, 0.5)" : "0px 0px 10px 0px rgba(0, 0, 0, 0.2)"};
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+    border-color: ${({ theme }) => theme.primary};
+    box-shadow: ${({ theme }) => theme.bg === "#000000" ? "0px 0px 15px 2px rgba(29, 66, 144, 0.4)" : "0px 0px 15px 2px rgba(29, 66, 144, 0.3)"};
+  }
   @media only screen and (max-width: 600px) {
     width: 32px;
     height: 32px;
