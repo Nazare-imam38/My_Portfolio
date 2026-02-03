@@ -9,7 +9,7 @@ const Container = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background-color: ${({ theme }) => theme.bg === "#000000" ? "rgba(0, 0, 0, 0.95)" : "rgba(255, 255, 255, 0.95)"};
+  background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: top;
@@ -69,7 +69,7 @@ const Image = styled.img`
   object-fit: cover;
   border-radius: 12px;
   margin-top: 30px;
-  box-shadow: ${({ theme }) => theme.bg === "#000000" ? "0px 0px 10px 0px rgba(0, 0, 0, 0.5)" : "0px 0px 10px 0px rgba(0, 0, 0, 0.2)"};
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 `;
 
 const ImagesContainer = styled.div`
@@ -97,7 +97,7 @@ const GridImage = styled.img`
   width: 100%;
   object-fit: cover;
   border-radius: 12px;
-  box-shadow: ${({ theme }) => theme.bg === "#000000" ? "0px 0px 10px 0px rgba(0, 0, 0, 0.5)" : "0px 0px 10px 0px rgba(0, 0, 0, 0.2)"};
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out;
   cursor: pointer;
   &:hover {
@@ -163,12 +163,12 @@ const MemberImage = styled.img`
   border-radius: 50%;
   margin-bottom: 4px;
   border: 2px solid ${({ theme }) => theme.primary}40;
-  box-shadow: ${({ theme }) => theme.bg === "#000000" ? "0px 0px 10px 0px rgba(0, 0, 0, 0.5)" : "0px 0px 10px 0px rgba(0, 0, 0, 0.2)"};
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
   &:hover {
     transform: scale(1.1);
     border-color: ${({ theme }) => theme.primary};
-    box-shadow: ${({ theme }) => theme.bg === "#000000" ? "0px 0px 15px 2px rgba(29, 66, 144, 0.4)" : "0px 0px 15px 2px rgba(29, 66, 144, 0.3)"};
+    box-shadow: 0px 0px 15px 2px rgba(29, 66, 144, 0.3);
   }
   @media only screen and (max-width: 600px) {
     width: 32px;

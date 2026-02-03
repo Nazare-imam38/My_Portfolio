@@ -14,9 +14,7 @@ const MapContainer = styled.div`
   border-radius: 12px;
   overflow: hidden;
   border: 2px solid ${({ theme }) => theme.primary};
-  box-shadow: ${({ theme }) => theme.bg === "#000000" 
-    ? "0 0 30px rgba(29, 66, 144, 0.5)" 
-    : "0 0 30px rgba(29, 66, 144, 0.3)"};
+  box-shadow: 0 0 30px rgba(29, 66, 144, 0.3);
   position: relative;
   z-index: 100;
   background-color: ${({ theme }) => theme.card};

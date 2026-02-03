@@ -4,8 +4,6 @@ import styled, { useTheme } from "styled-components";
 import { Bio } from "../data/constants";
 import { 
   MenuRounded, 
-  Brightness4, 
-  Brightness7,
   Person,
   Code,
   Work,
@@ -108,31 +106,6 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const ThemeToggle = styled.button`
-  border: 1px solid ${({ theme }) => theme.primary};
-  background: transparent;
-  color: ${({ theme }) => theme.primary};
-  border-radius: 50%;
-  cursor: pointer;
-  padding: 10px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.6s ease-in-out;
-  & svg {
-    transition: all 0.6s ease-in-out;
-  }
-  &:hover {
-    background: ${({ theme }) => theme.primary};
-    color: #FFFFFF;
-    & svg {
-      color: #FFFFFF;
-    }
-  }
-`;
-
 const GithubButton = styled.a`
   border: 1px solid ${({ theme }) => theme.primary};
   color: ${({ theme }) => theme.primary};
@@ -182,12 +155,12 @@ const MobileMenu = styled.ul`
   transform: ${({ isOpen }) =>
     isOpen ? "translateY(0)" : "translateY(-100%)"};
   border-radius: 0 0 20px 20px;
-  box-shadow: ${({ theme }) => theme.bg === "#000000" ? "0 0 10px 0 rgba(0, 0, 0, 0.5)" : "0 0 10px 0 rgba(0, 0, 0, 0.2)"};
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   opacity: ${({ isOpen }) => (isOpen ? "100%" : "0")};
   z-index: ${({ isOpen }) => (isOpen ? "1000" : "-1000")};
 `;
 
-const Navbar = ({ darkMode, toggleTheme }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("About");
   const theme = useTheme();
@@ -306,17 +279,6 @@ const Navbar = ({ darkMode, toggleTheme }) => {
               <School style={{ fontSize: '20px' }} />
               Education
             </NavLink>
-            <ThemeToggle 
-              onClick={() => {
-                toggleTheme();
-                setIsOpen(false);
-              }}
-              style={{
-                alignSelf: "center",
-              }}
-            >
-              {darkMode ? <Brightness7 /> : <Brightness4 />}
-            </ThemeToggle>
             <GithubButton
               href={Bio.github}
               target="_Blank"
@@ -331,9 +293,6 @@ const Navbar = ({ darkMode, toggleTheme }) => {
         )}
 
         <ButtonContainer>
-          <ThemeToggle onClick={toggleTheme}>
-            {darkMode ? <Brightness7 /> : <Brightness4 />}
-          </ThemeToggle>
           <GithubButton href={Bio.github} target="_Blank">
             Github Profile
           </GithubButton>

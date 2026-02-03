@@ -8,7 +8,7 @@ const ImageContainer = styled.div`
   border-radius: 10px;
   overflow: hidden;
   background-color: ${({ theme }) => theme.white};
-  box-shadow: ${({ theme }) => theme.bg === "#000000" ? "0 0 16px 2px rgba(0, 0, 0, 0.5)" : "0 0 16px 2px rgba(0, 0, 0, 0.1)"};
+  box-shadow: 0 0 16px 2px rgba(0, 0, 0, 0.1);
   border: 1px solid ${({ theme }) => theme.primary}20;
 `;
 
@@ -138,7 +138,7 @@ const Avatar = styled.img`
   object-fit: cover;
   object-position: center;
   background-color: ${({ theme }) => theme.white};
-  box-shadow: ${({ theme }) => theme.bg === "#000000" ? "0 0 10px rgba(0, 0, 0, 0.5)" : "0 0 10px rgba(0, 0, 0, 0.2)"};
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border: 3px solid ${({ theme }) => theme.card};
   transition: transform 0.2s ease-in-out;
   &:hover {

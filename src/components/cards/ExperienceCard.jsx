@@ -19,9 +19,7 @@ const Image = styled.img`
   background-color: ${({ theme }) => theme.white};
   padding: 6px;
   border: 1px solid ${({ theme }) => theme.primary}30;
-  box-shadow: ${({ theme }) => theme.bg === "#000000" 
-    ? "0 2px 8px rgba(0, 0, 0, 0.3)" 
-    : "0 2px 8px rgba(0, 0, 0, 0.1)"};
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
   @media only screen and (max-width: 768px) {
     width: 40px;

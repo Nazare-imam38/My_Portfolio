@@ -151,9 +151,7 @@ const ResumeButton = styled.a`
     ${({ theme }) => theme.primary} 0%,
     ${({ theme }) => theme.secondary} 100%
   );
-  box-shadow: ${({ theme }) => theme.bg === "#000000" 
-    ? "20px 20px 60px rgba(0, 0, 0, 0.8), -20px -20px 60px rgba(0, 0, 0, 0.8)" 
-    : "20px 20px 60px rgba(0, 0, 0, 0.1), -20px -20px 60px rgba(0, 0, 0, 0.1)"};
+  box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.1), -20px -20px 60px rgba(0, 0, 0, 0.1);
   border-radius: 50px;
   font-weight: 600;
   font-size: 20px;
@@ -162,9 +160,7 @@ const ResumeButton = styled.a`
      &:hover {
         transform: scale(1.05);
     transition: all 0.4s ease-in-out;
-    box-shadow: ${({ theme }) => theme.bg === "#000000"
-      ? "20px 20px 60px rgba(29, 66, 144, 0.4), -20px -20px 60px rgba(18, 174, 158, 0.4)"
-      : "20px 20px 60px rgba(29, 66, 144, 0.3), -20px -20px 60px rgba(18, 174, 158, 0.3)"};
+    box-shadow: 20px 20px 60px rgba(29, 66, 144, 0.3), -20px -20px 60px rgba(18, 174, 158, 0.3);
     filter: brightness(1.1);
     }    
     
