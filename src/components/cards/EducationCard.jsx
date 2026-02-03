@@ -78,11 +78,53 @@ const Description = styled.div`
   font-weight: 400;
   color: ${({ theme }) => theme.text_primary + 99};
   margin-bottom: 10px;
+  line-height: 1.6;
   @media only screen and (max-width: 768px) {
     font-size: 12px;
   }
 `;
 const Span = styled.div``;
+const BulletList = styled.ul`
+  margin: 8px 0;
+  padding-left: 20px;
+  list-style-type: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  @media only screen and (max-width: 768px) {
+    padding-left: 16px;
+    gap: 6px;
+  }
+`;
+const BulletItem = styled.li`
+  font-size: 15px;
+  font-weight: 400;
+  color: ${({ theme }) => theme.text_primary + 99};
+  line-height: 1.6;
+  @media only screen and (max-width: 768px) {
+    font-size: 12px;
+  }
+`;
+const Skills = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+`;
+const ItemWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+`;
+const Skill = styled.div`
+  font-size: 15px;
+  font-weight: 400;
+  color: ${({ theme }) => theme.text_primary + 99};
+  @media only screen and (max-width: 768px) {
+    font-size: 12px;
+  }
+`;
 
 const EducationCard = ({ education }) => {
   const theme = useTheme();
@@ -112,6 +154,8 @@ const EducationCard = ({ education }) => {
         backgroundColor: theme.card,
         border: `1px solid ${theme.primary}40`,
         borderRadius: "6px",
+        minHeight: "200px",
+        padding: "20px",
       }}
       contentArrowStyle={{
         borderRight: `7px solid ${theme.primary}50`,
@@ -127,11 +171,33 @@ const EducationCard = ({ education }) => {
         </Body>
       </Top>
       <Grade>
-        <b>Grade :</b>
-        {education.grade}
+        <b>Grade :</b> {education.grade}
       </Grade>
       <Description>
-        <Span>{education.desc}</Span>
+        {education?.desc && (
+          Array.isArray(education.desc) ? (
+            <BulletList>
+              {education.desc.map((item, index) => (
+                <BulletItem key={index}>{item}</BulletItem>
+              ))}
+            </BulletList>
+          ) : (
+            <Span>{education.desc}</Span>
+          )
+        )}
+        {education?.skills && (
+          <>
+            <br />
+            <Skills>
+              <b>GIS Skills:</b>
+              <ItemWrapper>
+                {education?.skills?.map((skill, index) => (
+                  <Skill key={index}>• {skill}</Skill>
+                ))}
+              </ItemWrapper>
+            </Skills>
+          </>
+        )}
       </Description>
     </VerticalTimelineElement>
   );

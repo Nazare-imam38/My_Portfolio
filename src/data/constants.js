@@ -292,30 +292,77 @@ export const skills = [
 export const experiences = [
   {
     id: 0,
-    img:"/gis/WAPDA.png",
-    role: "GIS Intern",
-    company: "WAPDA - Water and Power Development Authourity (Pakistan)",
-    date: "July 2024 - August 2024",
-    desc: "Utilized Remote Sensing (RS) and GIS to assess potential dam sites by analyzing topography, land use, and hydrology. Conducted satellite imagery analysis to monitor Glacial Lake Outburst Flood (GLOF) risks in Pakistan’s rivers, identifying vulnerable areas and predicting flood impacts. Gained hands-on experience through field visits to Mangla and Tarbela Dams, studying GIS applications in dam management, structural assessment, and flood monitoring.",
+    img:"/gis/NESPAK.png",
+    role: "Web GIS Developer",
+    company: "NESPAK - National Engineering Services Pakistan",
+    date: "January 2026 - Current",
+    desc: [
+      "Developed a GIS webapp for progress monitoring of the provincial government project, Safe City Cameras installation.",
+      "Developed a dashboard for the Province of Punjab Lands Record Data Management by implementing spatial queries from spatial databases for filtering operations.",
+      "Managed GIS based web app for the household surveys conducted within the remote areas of Pakistan."
+    ],
     skills: [
-      "Arc Map",
-      "Global Mapper",
-      "USGS"
+      "Web GIS",
+      "Spatial Databases",
+      "Dashboard Development",
+      "GIS Web Applications"
     ],
   },
   {
     id: 1,
+    img:"/gis/GisPlus.png",
+    role: "Web GIS Developer",
+    company: "GIS PLUS Pvt Ltd",
+    date: "September 2025 - January 2026",
+    desc: [
+      "Developed a GIS mobile app using mobile GIS concepts for plot selling ads posting, and assets of a Pakistan real estate company.",
+      "Implemented Pakistan's first Biodiversity Web Portal with GIS data under the collaboration of UNDP and MOCC Pakistan.",
+      "Assisted in the GIS data collection for the National Forestry Management Systems web portal of Pakistan."
+    ],
+    skills: [
+      "Mobile GIS",
+      "Web Portal Development",
+      "GIS Data Collection",
+      "Real Estate GIS"
+    ],
+  },
+  {
+    id: 2,
+    img:"/gis/WAPDA.png",
+    role: "GIS Intern",
+    company: "WAPDA - Pakistan Water and Power Development Authority",
+    date: "July 2024 - August 2024",
+    desc: [
+      "Implemented the RS/GIS concept in the pre-feasibility of the New Dam Projects of Pakistan.",
+      "Generated GLOF monitoring for flood prediction in Rivers of Pakistan.",
+      "Visited the Mangla and Tarbela Dams regarding recent developments in dam safety using GIS data."
+    ],
+    skills: [
+      "Arc Map",
+      "Global Mapper",
+      "USGS",
+      "Remote Sensing",
+      "GLOF Monitoring"
+    ],
+  },
+  {
+    id: 3,
     img:"/gis/NESPAK.png",
     role: "GIS Intern",
-    company: "PWRM – Hill Torrent Consultants",
+    company: "PWRM – Hill Torrent Consultants Pakistan",
     date: "June 2023 - August 2023",
-    desc: "I was part of the GIS team for the Hill Torrent Project, funded by the Asian Development Bank (ADB), where I contributed to geospatial analysis and mapping. My role involved conducting pre-feasibility studies for potential dam sites in Rajanpur and D.G. Khan, evaluating hydrological and environmental factors. Additionally, I performed digitization and georeferencing of topographic maps, drainage networks, Wahs, and Sub-Wahs, ensuring precise spatial data for project planning and decision-making",
+    desc: [
+      "Contributed to ADB technical assistance documentation for the Hill Torrents Management Project aimed at improving flood and watershed management planning.",
+      "Assisted in technical data review and revision works to support sustainable water resources and disaster risk mitigation strategies.",
+      "Collaborated with the project team to prepare revisions and organize project materials in accordance with ADB grant guidelines."
+    ],
     skills: [
      "Google Earth Pro",
       "QGIS",
       "ArcMap",
       "Sentinel",
-      "USGS"
+      "USGS",
+      "ADB Documentation"
     ],
   },
 ];
@@ -328,7 +375,21 @@ export const education = [
     date: "Nov 2021 - September 2025",
     grade: "85 CGPA",
     degree: "Bachelor of Engineering - Geographical Information System (GIS)",
-    desc: "As a Bachelor’s student in Geographic Information Systems (GIS) with a strong focus on Python and R programming. My expertise lies in leveraging these languages for spatial analysis, machine learning, and WebGIS applications. I have hands-on experience developing GIS-based models, automating geospatial workflows, and building interactive web applications for spatial data visualization.",
+    desc: [
+      "As a Bachelor's student in Geographic Information Systems (GIS) with a strong focus on Python and R programming.",
+      "My expertise lies in leveraging these languages for spatial analysis, machine learning, and WebGIS applications.",
+      "I have hands-on experience developing GIS-based models, automating geospatial workflows, and building interactive web applications for spatial data visualization."
+    ],
+    skills: [
+      "Python",
+      "R Programming",
+      "Spatial Analysis",
+      "Machine Learning",
+      "WebGIS",
+      "Geospatial Workflows",
+      "GIS-based Models",
+      "Spatial Data Visualization"
+    ],
   },
   {
     id: 1,
@@ -337,7 +398,10 @@ export const education = [
     date: "Apr 2019 - Apr 2021",
     grade: "95%",
     degree: "FSC - Pre Engineering",
-    desc: "I completed my FSc Pre-Engineering from Garrison College for Boys (2019–2021), where I built a strong foundation in mathematics, physics, and chemistry. During this time, I developed analytical and problem-solving skills, which later fueled my interest in computational and technical fields."
+    desc: [
+      "I completed my FSc Pre-Engineering from Garrison College for Boys (2019–2021), where I built a strong foundation in mathematics, physics, and chemistry.",
+      "During this time, I developed analytical and problem-solving skills, which later fueled my interest in computational and technical fields."
+    ]
   }
 ];
 
@@ -489,7 +553,7 @@ export const projects = [
       "/project/web app/live.png",
     tags: ["HTML", "API", "Axios", "Node JS"],
     category: "web app",
-    github: "https://github.com/rishavchanda/Breaking-Bad",
+    github: "https://github.com/Nazare-imam38",
     webapp: "https://breaking-bad-webapp.netlify.app",
   },
 ];

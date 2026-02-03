@@ -71,6 +71,7 @@ const Description = styled.div`
   font-weight: 400;
   color: ${({ theme }) => theme.text_primary + 99};
   margin-bottom: 10px;
+  line-height: 1.6;
   @media only screen and (max-width: 768px) {
     font-size: 12px;
   }
@@ -78,6 +79,27 @@ const Description = styled.div`
 const Span = styled.div`
   display: -webkit-box;
   max-width: 100%;
+`;
+const BulletList = styled.ul`
+  margin: 8px 0;
+  padding-left: 20px;
+  list-style-type: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  @media only screen and (max-width: 768px) {
+    padding-left: 16px;
+    gap: 6px;
+  }
+`;
+const BulletItem = styled.li`
+  font-size: 15px;
+  font-weight: 400;
+  color: ${({ theme }) => theme.text_primary + 99};
+  line-height: 1.6;
+  @media only screen and (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 const Skills = styled.div`
   width: 100%;
@@ -128,6 +150,8 @@ const ExperienceCard = ({ experience }) => {
         backgroundColor: theme.card,
         border: `1px solid ${theme.primary}40`,
         borderRadius: "6px",
+        minHeight: "200px",
+        padding: "20px",
       }}
       contentArrowStyle={{
         borderRight: `7px solid ${theme.primary}50`,
@@ -143,7 +167,17 @@ const ExperienceCard = ({ experience }) => {
         </Body>
       </Top>
       <Description>
-        {experience?.desc && <Span>{experience?.desc}</Span>}
+        {experience?.desc && (
+          Array.isArray(experience.desc) ? (
+            <BulletList>
+              {experience.desc.map((item, index) => (
+                <BulletItem key={index}>{item}</BulletItem>
+              ))}
+            </BulletList>
+          ) : (
+            <Span>{experience.desc}</Span>
+          )
+        )}
         {experience?.skills && (
           <>
             <br />
@@ -151,7 +185,7 @@ const ExperienceCard = ({ experience }) => {
               <b>Skills:</b>
               <ItemWrapper>
                 {experience?.skills?.map((skill, index) => (
-                  <Skill>• {skill}</Skill>
+                  <Skill key={index}>• {skill}</Skill>
                 ))}
               </ItemWrapper>
             </Skills>
