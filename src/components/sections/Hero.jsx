@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Bio } from "../../data/constants";
 import Typewriter from "typewriter-effect";
-import HeroImg from "../../images/Nazareimam.jpg";
 import HeroBgAnimation from "../HeroBgAnimation";
+import Map3D from "../Map3D";
 
 const HeroContainer = styled.div`
   display: flex;
@@ -51,6 +51,8 @@ const HeroRightContainer = styled.div`
   order: 2;
   display: flex;
   justify-content: end;
+  position: relative;
+  z-index: 10;
   @media (max-width: 960px) {
     order: 1;
     display: flex;
@@ -173,13 +175,16 @@ const ResumeButton = styled.a`
     }
 `;
 
-const Img = styled.img`
-  border-radius: 50%;
+const MapWrapper = styled.div`
   width: 100%;
   height: 100%;
   max-width: 400px;
   max-height: 400px;
-  border: 2px solid ${({ theme }) => theme.primary};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 10;
 
   @media (max-width: 640px) {
     max-width: 280px;
@@ -249,7 +254,9 @@ const Hero = () => {
               </ResumeButton>
             </HeroLeftContainer>
             <HeroRightContainer>
-              <Img src={HeroImg} alt="Nazar E Imam" />
+              <MapWrapper>
+                <Map3D />
+              </MapWrapper>
             </HeroRightContainer>
           </HeroInnerContainer>
         

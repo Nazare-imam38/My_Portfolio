@@ -72,6 +72,39 @@ const Image = styled.img`
   box-shadow: ${({ theme }) => theme.bg === "#000000" ? "0px 0px 10px 0px rgba(0, 0, 0, 0.5)" : "0px 0px 10px 0px rgba(0, 0, 0, 0.2)"};
 `;
 
+const ImagesContainer = styled.div`
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+const ImageGrid = styled.div`
+  display: grid;
+  grid-template-columns: ${({ imageCount }) => 
+    imageCount === 1 ? '1fr' : 
+    imageCount === 2 ? '1fr 1fr' : 
+    '1fr 1fr 1fr'};
+  gap: 12px;
+  width: 100%;
+  @media only screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const GridImage = styled.img`
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: ${({ theme }) => theme.bg === "#000000" ? "0px 0px 10px 0px rgba(0, 0, 0, 0.5)" : "0px 0px 10px 0px rgba(0, 0, 0, 0.2)"};
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.02);
+  }
+`;
+
 const Label = styled.div`
   font-size: 20px;
   font-weight: 600;
@@ -207,7 +240,26 @@ const ProjectDetails = ({ openModal, setOpenModal }) => {
             }}
             onClick={() => setOpenModal({ state: false, project: null })}
           />
-          <Image src={project?.image} />
+          {(() => {
+            const images = project?.images || (project?.image ? [project.image] : []);
+            return images.length > 0 ? (
+              images.length === 1 ? (
+                <Image src={images[0]} alt={project?.title} />
+              ) : (
+                <ImagesContainer>
+                  <ImageGrid imageCount={images.length}>
+                    {images.map((img, index) => (
+                      <GridImage 
+                        key={index} 
+                        src={img} 
+                        alt={`${project?.title} - Image ${index + 1}`}
+                      />
+                    ))}
+                  </ImageGrid>
+                </ImagesContainer>
+              )
+            ) : null;
+          })()}
           <Title>{project?.title}</Title>
           <Date>{project.date}</Date>
           <Tags>

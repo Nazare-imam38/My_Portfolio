@@ -32,7 +32,7 @@ export const skills = [
       {
         name: "Angular Js",
         image:
-          "https://camo.githubusercontent.com/8886130b3d8aba95dbdd7c4f9a41029606424cc06d1873c1ced87dd55a222fef/68747470733a2f2f616e67756c61722e696f2f6173736574732f696d616765732f6c6f676f732f616e67756c61722f616e67756c61722e737667",
+          "/gis/Angular js.jpg",
       },
       {
         name: "HTML",
@@ -157,7 +157,7 @@ export const skills = [
       {
         name: "cartopy",
         image:
-          "/gis/cartopy.png",
+          "/gis/cartopy.jpeg",
       },
     ],
   },
@@ -223,7 +223,7 @@ export const skills = [
       {
         name: "Tenserflow",
         image:
-          "https://static-00.iconduck.com/assets.00/tensorflow-icon-1911x2048-1m2s54vn.png",
+          "/gis/TensorFlow.png",
       },
       {
         name: "Keras",
@@ -238,7 +238,7 @@ export const skills = [
       {
         name: "Google Colab",
         image:
-          "https://assets.stickpng.com/images/63c2e4c9c4baad4ce22bf9ef.png",
+          "/gis/google coll.jpg",
       },
       {
         name: "Sk Learn Kit",
@@ -263,7 +263,7 @@ export const skills = [
       {
         name: "Netlify",
         image:
-          "https://seeklogo.com/images/N/netlify-logo-BD8F8A77E2-seeklogo.com.png",
+          "/gis/netlifly.png",
       },
       {
         name: "VS Code",
@@ -278,7 +278,7 @@ export const skills = [
       {
         name: "Adobe XD",
         image:
-          "https://camo.githubusercontent.com/c205ecbe12500177d102169d97bc1c17c545155fdf5ec78c08d54ac53e5b38c1/68747470733a2f2f63646e2e776f726c64766563746f726c6f676f2e636f6d2f6c6f676f732f61646f62652d78642e737667",
+          "/gis/adobe xd.png",
       },
       {
         name: "Figma",
@@ -414,6 +414,12 @@ export const projects = [
       "Developed Nearby Shop Locator in G-11 and G-13 using HTML, CSS. Utilized Geocoding in Google Sheets to store shop coordinates, retrieved using Hash Tables. Integrated OpenStreetMap (OSM) for display and implemented logic for finding the shortest route to the nearest Grocery Shop.",
     image:
       "/project/Python/Screenshot 2025-02-16 234541.png",
+    // Example: To add multiple images, use the 'images' array instead of 'image'
+    // images: [
+    //   "/project/Python/Screenshot 2025-02-16 234541.png",
+    //   "/project/Python/image2.png",
+    //   "/project/Python/image3.png"
+    // ],
     tags: [
       "Python",
       "Leaflet",

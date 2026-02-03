@@ -1,16 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+
+const ImageContainer = styled.div`
+  width: 100%;
+  height: 180px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: ${({ theme }) => theme.white};
+  box-shadow: ${({ theme }) => theme.bg === "#000000" ? "0 0 16px 2px rgba(0, 0, 0, 0.5)" : "0 0 16px 2px rgba(0, 0, 0, 0.1)"};
+  border: 1px solid ${({ theme }) => theme.primary}20;
+`;
 
 const Image = styled.img`
   width: 100%;
-  height: 180px;
+  height: 100%;
   object-fit: cover;
   object-position: center;
-  background-color: ${({ theme }) => theme.white};
-  border-radius: 10px;
-  box-shadow: ${({ theme }) => theme.bg === "#000000" ? "0 0 16px 2px rgba(0, 0, 0, 0.5)" : "0 0 16px 2px rgba(0, 0, 0, 0.1)"};
-  border: 1px solid ${({ theme }) => theme.primary}20;
   transition: all 0.3s ease-in-out;
+  display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
+`;
+
+const ImageGrid = styled.div`
+  display: grid;
+  grid-template-columns: ${({ imageCount }) => imageCount === 2 ? '1fr 1fr' : '1fr 1fr 1fr'};
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.3s ease-in-out;
+  ${({ isHovered }) => isHovered && `
+    opacity: 1;
+  `}
+`;
+
+const GridImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
+
+const SingleImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: all 0.3s ease-in-out;
+  opacity: ${({ isHovered, hasMultipleImages }) => (hasMultipleImages && isHovered ? 0 : 1)};
 `;
 
 const Card = styled.div`
@@ -32,10 +76,6 @@ const Card = styled.div`
     box-shadow: 0 0 30px ${({ theme }) => theme.primary}50;
     filter: brightness(1.1);
     border: 1px solid ${({ theme }) => theme.primary};
-    ${Image} {
-      transform: scale(1.02);
-      box-shadow: ${({ theme }) => theme.bg === "#000000" ? "0 0 20px 4px rgba(29, 66, 144, 0.3)" : "0 0 20px 4px rgba(29, 66, 144, 0.2)"};
-    }
   }
 `;
 
@@ -118,12 +158,52 @@ const Avatar = styled.img`
 `;
 
 const ProjectCard = ({ project, setOpenModal }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  
+  // Support both single image (backward compatible) and multiple images
+  const images = project.images || (project.image ? [project.image] : []);
+  const hasMultipleImages = images.length > 1;
+  
   return (
-    <Card onClick={() => setOpenModal({ state: true, project: project })}>
-      <Image src={project.image} />
+    <Card 
+      onClick={() => setOpenModal({ state: true, project: project })}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <ImageContainer>
+        {hasMultipleImages ? (
+          <>
+            <SingleImage 
+              src={images[0]} 
+              alt={project.title}
+              isHovered={isHovered}
+              hasMultipleImages={true}
+            />
+            <ImageGrid 
+              isHovered={isHovered} 
+              imageCount={images.length}
+            >
+              {images.map((img, index) => (
+                <GridImage 
+                  key={index} 
+                  src={img} 
+                  alt={`${project.title} - Image ${index + 1}`}
+                />
+              ))}
+            </ImageGrid>
+          </>
+        ) : (
+          <SingleImage 
+            src={images[0]} 
+            alt={project.title}
+            isHovered={false}
+            hasMultipleImages={false}
+          />
+        )}
+      </ImageContainer>
       <Tags>
         {project.tags?.map((tag, index) => (
-          <Tag>{tag}</Tag>
+          <Tag key={index}>{tag}</Tag>
         ))}
       </Tags>
       <Details>
@@ -132,8 +212,8 @@ const ProjectCard = ({ project, setOpenModal }) => {
         <Description>{project.description}</Description>
       </Details>
       <Members>
-        {project.member?.map((member) => (
-          <Avatar src={member.img} />
+        {project.member?.map((member, index) => (
+          <Avatar key={index} src={member.img} />
         ))}
       </Members>
     </Card>
