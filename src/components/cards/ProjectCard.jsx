@@ -12,15 +12,6 @@ const ImageContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.primary}20;
 `;
 
-const Image = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: all 0.3s ease-in-out;
-  display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
-`;
-
 const ImageGrid = styled.div`
   display: grid;
   grid-template-columns: ${({ imageCount }) => imageCount === 2 ? '1fr 1fr' : '1fr 1fr 1fr'};
